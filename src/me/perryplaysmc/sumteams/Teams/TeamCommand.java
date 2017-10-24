@@ -1,4 +1,4 @@
-package me.perryplaysmc.sumteams.Teams;
+package com.enjin.superheroesunlimitedserver.Teams;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,9 +17,9 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import me.perryplaysmc.sumteams.SUM;
-import me.perryplaysmc.sumteams.Utils.Config;
-import me.perryplaysmc.sumteams.Utils.Utils;
+import com.enjin.superheroesunlimitedserver.SUM;
+import com.enjin.superheroesunlimitedserver.Utils.Config;
+import com.enjin.superheroesunlimitedserver.Utils.Utils;
 
 public class TeamCommand implements CommandExecutor, Listener, Utils {
 
@@ -38,7 +38,7 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 		}
 		p = (Player) s;
 		if(cl.equalsIgnoreCase("team")) {
-			if(!s.hasPermission("sumteams.command")) {
+			if(!s.hasPermission("sum.command")) {
 				sendMessage(s, "You do not have permission for this command!");
 				return true;
 			}
@@ -52,6 +52,12 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 						, "/team &binvite <Player> &c: Add a player to your team! &6: Alias: add"
 						, "/team &bkick <Player> &c: Remove a player from your team! &6: Alias: remove"
 						, "/team &bsetowner <Player> &c: Set your team leader to someone else!");
+				if(s.hasPermission("sumteams.reload")) {
+					sendMessage(s, "/team &breload &c: Reload the config!");
+				}
+				if(s.hasPermission("sumteams.reload.all")) {
+					sendMessage(s, "/team &breload &c: Reload all configs!");
+				}
 				return true;
 			}else if(args.length == 1 && !args[0].equalsIgnoreCase("leave")
 					&& !args[0].equalsIgnoreCase("chat") && !args[0].equalsIgnoreCase("delete")
@@ -70,9 +76,29 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 						, "/team &binvite <Player> &c: Add a player to your team! &6: Alias: add"
 						, "/team &bkick <Player> &c: Remove a player from your team! &6: Alias: remove"
 						, "/team &bsetowner <Player> &c: Set your team leader to someone else!");
+				if(s.hasPermission("sumteams.reload")) {
+					sendMessage(s, "/team &breload &c: Reload the config!");
+				}
+				if(s.hasPermission("sumteams.reload.all")) {
+					sendMessage(s, "/team &breload &c: Reload all configs!");
+				}
+				if(s.hasPermission("sum.perms")) {
+					sendMessage(s, "/team &brperms &c: Get all the permissions for this plugin!");
+				}
 				return true;
 			}
 			if(args.length == 1) {
+				if(args[0].equalsIgnoreCase("perms")) {
+					if(s.hasPermission("sum.perms")) {
+					sendMessage(s, "Permissions: "
+								 , "sum.command"
+								 , "sum.perms"
+								 , "sum.reload"
+								 , "sum.reload.all");	
+					}else {
+						sendMessage(s, "You do not have permission for this command!");
+					}
+				}
 				if(args[0].equalsIgnoreCase("reload")) {
 					if(!s.hasPermission("sumteams.reload")) {
 						sendMessage(s, "You do not have permission for this command!");

@@ -97,13 +97,9 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 								off.add(c.getName());
 							}
 						}
-						String status = "Bad";
-						sendMessage(s, "Your team status"
-								, "Name: " + t.getName()
-								, "Owner: &4&l" + t.getOwner()
-								, "Players: "
-								);
-						if(!on.isEmpty() && !off.isEmpty()) {
+						String status = "";
+						
+						if(!on.isEmpty()) {
 							if(on.size() > 1) {
 								status = "Good";
 							}
@@ -116,6 +112,8 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 							if(on.size() > 4) {
 								status = "Fantastic";
 							}
+						}
+						if(!off.isEmpty()) {
 							if(off.size() < 1) {
 								status = "Fine";
 							}
@@ -129,8 +127,19 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 								status = "Horrible";
 							}
 						}
+						if(on.isEmpty() || off.isEmpty()){
+							if(on.isEmpty()) {
+								status = "Horrible";
+							}
+							if(off.isEmpty()) {
+								status = "Horrible";
+							}
+						}sendMessage(s, "Your team status"
+									 , "Name: " + t.getName()
+									 , "Owner: &4&l" + t.getOwner());
 						if(!on.isEmpty() && !off.isEmpty()) {
 							sendMessage(s
+									, "Players:"
 									, "Online (&4&l" + on.size() + "&r&c): "
 									, "&4&l" + on.toString().replace("[", "").replace(",", "&r&c,&4&l,").replace("]", "")
 									, "Offline (&4&l" + off.size() + "&r&c): "
@@ -140,17 +149,19 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 						}
 						else if(!on.isEmpty() && off.isEmpty()) {
 							sendMessage(s
+									, "Players: "
 									, "Online (&4&l" + on.size() + "&r&c): "
 									, "&4&l" + on.toString().replace("[", "").replace(",", "&r&c,&4&l,").replace("]", "")
 									, "Status: " + status);
 						}
 						else if(!off.isEmpty() && on.isEmpty()) {
 							sendMessage(s
+									, "Players"
 									, "Offline (&4&l" + off.size() + "&r&c): "
 									, "&4&l" + off.toString().replace("[", "").replace(",", "&r&c,&4&l,").replace("]", "")
 									, "Status: " + status);
 						}else {
-							sendMessage(s, "None");
+							sendMessage(s, "Players: None", "Status: " + status);
 						}
 					}else {	
 						sendMessage(s, "Your team status"

@@ -84,6 +84,7 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 				}
 				if(args[0].equalsIgnoreCase("status")) {
 					t = st.getManager().getTeamByPlayer(p);
+						String status = "Horrible";
 					if(t != null) {
 						cfg = new Config(st, t.getName(), false);
 						List<String> on = new ArrayList<String>();
@@ -97,8 +98,7 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 								off.add(c.getName());
 							}
 						}
-						String status = "";
-						
+
 						if(!on.isEmpty()) {
 							if(on.size() > 1) {
 								status = "Good";
@@ -135,8 +135,8 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 								status = "Horrible";
 							}
 						}sendMessage(s, "Your team status"
-									 , "Name: " + t.getName()
-									 , "Owner: &4&l" + t.getOwner());
+								, "Name: " + t.getName()
+								, "Owner: &4&l" + t.getOwner());
 						if(!on.isEmpty() && !off.isEmpty()) {
 							sendMessage(s
 									, "Players:"
@@ -144,7 +144,7 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 									, "&4&l" + on.toString().replace("[", "").replace(",", "&r&c,&4&l,").replace("]", "")
 									, "Offline (&4&l" + off.size() + "&r&c): "
 									, "&4&l" + off.toString().replace("[", "").replace(",", "&r&c,&4&l,").replace("]", "")
-									, "Status: " + status);
+									, "Status: &4&l" + status);
 							return true;
 						}
 						else if(!on.isEmpty() && off.isEmpty()) {
@@ -152,22 +152,22 @@ public class TeamCommand implements CommandExecutor, Listener, Utils {
 									, "Players: "
 									, "Online (&4&l" + on.size() + "&r&c): "
 									, "&4&l" + on.toString().replace("[", "").replace(",", "&r&c,&4&l,").replace("]", "")
-									, "Status: " + status);
+									, "Status: &4&l" + status);
 						}
 						else if(!off.isEmpty() && on.isEmpty()) {
 							sendMessage(s
 									, "Players"
 									, "Offline (&4&l" + off.size() + "&r&c): "
 									, "&4&l" + off.toString().replace("[", "").replace(",", "&r&c,&4&l,").replace("]", "")
-									, "Status: " + status);
+									, "Status: &4&l" + status);
 						}else {
-							sendMessage(s, "Players: None", "Status: " + status);
+							sendMessage(s, "Players: &4&lNone", "Status: &4&l" + status);
 						}
-					}else {	
+					}else {
 						sendMessage(s, "Your team status"
 								, "Owner: None"
 								, "Players: None"
-								, "Status: Bad, forever alone.");
+								, "Status: &4&l" + status + "&r&c, forever alone.");
 					}
 				}
 				if(args[0].equalsIgnoreCase("delete") || args[0].equalsIgnoreCase("disband")) {

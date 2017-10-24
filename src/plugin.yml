@@ -1,6 +1,9 @@
-main: me.perryplaysmc.sumteams.SUM
-name: SUMTeamss
+name: SuperHeroesUnlimited Teams
+main: com.enjin.superheroesunlimitedserver.SUM
 version: 1.0
+author: PerryPlaysMC
 
 commands: 
   team: 
+    usage: /team
+    description: SuperHeroesUnlimited Teams main command.

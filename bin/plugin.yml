@@ -1,0 +1,6 @@
+main: me.perryplaysmc.sumteams.SUM
+name: SUMTeamss
+version: 1.0
+
+commands: 
+  team: 
